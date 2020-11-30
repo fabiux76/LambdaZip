@@ -12,3 +12,15 @@ Resources:
           Properties:
             Path: /
             Method: GET      
+      Policies:
+        - SNSPublishMessagePolicy:
+            TopicName: !GetAtt HelloWorldTopic.TopicName
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN: !Ref HelloWorldTopic
+  HelloWorldTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint: fabio.adani@gmail.com
+          Protocol: email            
