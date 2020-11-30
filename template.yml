@@ -13,21 +13,12 @@ Resources:
             Path: /
             Method: GET      
       Policies:
-        - SNSPublishMessagePolicy:
-            TopicName: !GetAtt HelloWorldTopic.TopicName
         - S3WritePolicy:
             BucketName: !Ref S3ZipBucket
         - S3ReadPolicy:
             BucketName: !Ref S3ZipBucket
       Environment:
         Variables:
-          SNS_TOPIC_ARN: !Ref HelloWorldTopic
           S3_BUCKET_ZIP: !Ref S3ZipBucket
-  HelloWorldTopic:
-    Type: AWS::SNS::Topic
-    Properties:
-      Subscription:
-        - Endpoint: fabio.adani@gmail.com
-          Protocol: email
   S3ZipBucket:
     Type: AWS::S3::Bucket           
