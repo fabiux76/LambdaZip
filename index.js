@@ -11,7 +11,16 @@ exports.handler = async function(event, context) {
 
   try {
     await s3.upload(params).promise();
-    return { statusCode: 200, body: 'File created' };
+
+    const signedUrlExpireSeconds = 60 * 5
+
+    const url = s3.getSignedUrl('getObject', {
+        Bucket: params.Bucket,
+        Key: params.Key,
+        Expires: signedUrlExpireSeconds
+    })
+
+    return { statusCode: 200, body: url };
   } catch(err) {
     return { statusCode: 500, body: JSON.stringify(err) };
   }
