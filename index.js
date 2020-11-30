@@ -1,15 +1,17 @@
 const aws = require('aws-sdk');
 aws.config.update({region: 'eu-west-1'});
-const sns = new aws.SNS()
+const s3 = new aws.S3();
+
 exports.handler = async function(event, context) {
   const params = {
-    Message: 'Hello World!',
-    Subject: 'SNS Notification from Lambda',
-    TopicArn: process.env.SNS_TOPIC_ARN
+    Bucket: process.env.S3_BUCKET_ZIP,
+    Key: 'Hello.txt',
+    Body: 'Hello World'
   };
+
   try {
-    await sns.publish(params).promise()
-    return { statusCode: 200, body: 'Message sent' };
+    await s3.upload(params).promise();
+    return { statusCode: 200, body: 'File created' };
   } catch(err) {
     return { statusCode: 500, body: JSON.stringify(err) };
   }
