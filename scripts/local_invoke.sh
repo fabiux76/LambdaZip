@@ -1,0 +1,1 @@
+sam local invoke --env-vars Debug/env.json
