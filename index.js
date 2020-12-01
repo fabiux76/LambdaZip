@@ -1,11 +1,13 @@
 const aws = require('aws-sdk');
+const uuid = require('uuid');
+
 aws.config.update({region: 'eu-west-1'});
 const s3 = new aws.S3();
 
 exports.handler = async function(event, context) {
   const params = {
     Bucket: process.env.S3_BUCKET_ZIP,
-    Key: context.awsRequestId,
+    Key: uuid.v1(),
     Body: 'Hello World'
   };
 
