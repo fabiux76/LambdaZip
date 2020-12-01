@@ -5,7 +5,7 @@ const s3 = new aws.S3();
 exports.handler = async function(event, context) {
   const params = {
     Bucket: process.env.S3_BUCKET_ZIP,
-    Key: 'Hello.txt',
+    Key: context.awsRequestId,
     Body: 'Hello World'
   };
 
