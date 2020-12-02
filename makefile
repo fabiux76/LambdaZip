@@ -5,6 +5,3 @@ package:
 
 deploy: package
 	@sh -c "'$(CURDIR)/scripts/deploy.sh'"
-
-debug:
-	@sh -c ""

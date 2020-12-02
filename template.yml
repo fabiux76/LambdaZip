@@ -10,8 +10,8 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
-            Path: /
-            Method: GET      
+            Path: /hello
+            Method: POST      
       Policies:
         - S3WritePolicy:
             BucketName: !Ref S3ZipBucket

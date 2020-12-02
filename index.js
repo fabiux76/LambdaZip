@@ -5,10 +5,14 @@ aws.config.update({region: 'eu-west-1'});
 const s3 = new aws.S3();
 
 exports.handler = async function(event, context) {
+
+  const { body } = event;
+  const { name, surname } = JSON.parse(body);
+
   const params = {
     Bucket: process.env.S3_BUCKET_ZIP,
     Key: uuid.v1(),
-    Body: 'Hello World'
+    Body: `Hello ${name} ${surname}`
   };
 
   try {
