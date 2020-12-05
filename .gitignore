@@ -116,3 +116,5 @@ dist
 .pnp.*
 
 package.yml
+
+.aws-sam

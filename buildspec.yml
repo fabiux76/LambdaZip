@@ -4,7 +4,7 @@ phases:
     runtime-versions:
       nodejs: 12
     commands:
-      - aws cloudformation package --template-file template.yml --output-template-file package.yml --s3-bucket afbuckets3
+      - sam package --template-file template.yml --output-template-file package.yml --s3-bucket afbuckets3
 
 artifacts:
   type: zip
