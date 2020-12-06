@@ -1,1 +1,1 @@
-sam package --template-file template.yml --output-template-file package.yml --s3-bucket afbuckets3
+sam build && sam package --output-template-file package.yml --s3-bucket afbuckets3

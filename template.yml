@@ -10,6 +10,7 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
+            RestApiId: !Ref API
             Path: /hello
             Method: POST      
       Policies:
@@ -21,4 +22,20 @@ Resources:
         Variables:
           S3_BUCKET_ZIP: !Ref S3ZipBucket
   S3ZipBucket:
-    Type: AWS::S3::Bucket           
+    Type: AWS::S3::Bucket
+  API:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Auth: 
+        ApiKeyRequired: True
+        UsagePlan:
+          CreateUsagePlan: PER_API
+          Description: Usage plan for this API
+          Quota:
+            Limit: 500
+            Period: MONTH
+          Throttle:
+            BurstLimit: 100
+            RateLimit: 50
+          UsagePlanName: DefaultUsagePlan

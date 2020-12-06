@@ -1,1 +1,1 @@
-sam deploy --template-file package.yml --stack-name sam-hello-world-1 --capabilities CAPABILITY_IAM
+sam deploy --template-file package.yml --stack-name LocalDeploy --capabilities CAPABILITY_IAM
