@@ -9,6 +9,7 @@ Resources:
       Events:
         HelloWorldApi:
           Type: Api
+          RestApiId: !Ref API
           Properties:
             Path: /hello
             Method: POST      
@@ -21,4 +22,7 @@ Resources:
         Variables:
           S3_BUCKET_ZIP: !Ref S3ZipBucket
   S3ZipBucket:
-    Type: AWS::S3::Bucket           
+    Type: AWS::S3::Bucket
+  API:
+    Type: AWS::Serverless::Api
+    StageName: PROVA   
