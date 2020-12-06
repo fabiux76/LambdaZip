@@ -9,8 +9,8 @@ Resources:
       Events:
         HelloWorldApi:
           Type: Api
-          RestApiId: !Ref API
           Properties:
+            RestApiId: !Ref API
             Path: /hello
             Method: POST      
       Policies:
@@ -25,4 +25,17 @@ Resources:
     Type: AWS::S3::Bucket
   API:
     Type: AWS::Serverless::Api
-    StageName: PROVA   
+    Properties:
+      StageName: Prod
+      Auth: 
+        ApiKeyRequired: True
+        UsagePlan:
+          CreateUsagePlan: PER_API
+          Description: Usage plan for this API
+          Quota:
+            Limit: 500
+            Period: MONTH
+          Throttle:
+            BurstLimit: 100
+            RateLimit: 50
+          UsagePlanName: DefaultUsagePlan  
