@@ -38,4 +38,4 @@ Resources:
           Throttle:
             BurstLimit: 100
             RateLimit: 50
-          UsagePlanName: DefaultUsagePlan  
+          UsagePlanName: DefaultUsagePlan
