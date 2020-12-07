@@ -1,5 +1,16 @@
 AWSTemplateFormatVersion : '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+Parameters:
+  S3DocumentsBucketName:
+    Description: 'The name of the S3 bucket'
+    Type: String
+  ApiKeyRequired:
+    Description: 'API Key required to call API'
+    Type: String
+    Default: 'true'
+    AllowedValues:
+    - 'true'
+    - 'false'
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
@@ -18,9 +29,12 @@ Resources:
             BucketName: !Ref S3ZipBucket
         - S3ReadPolicy:
             BucketName: !Ref S3ZipBucket
+        - S3ReadPolicy:
+            BucketName: !Ref S3DocumentsBucketName
       Environment:
         Variables:
           S3_BUCKET_ZIP: !Ref S3ZipBucket
+          S3_BUCKET_ORIG: !Ref S3DocumentsBucketName
   S3ZipBucket:
     Type: AWS::S3::Bucket
   API:
@@ -28,7 +42,7 @@ Resources:
     Properties:
       StageName: Prod
       Auth: 
-        ApiKeyRequired: True
+        ApiKeyRequired: !Ref ApiKeyRequired
         UsagePlan:
           CreateUsagePlan: PER_API
           Description: Usage plan for this API
