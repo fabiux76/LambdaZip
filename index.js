@@ -20,7 +20,7 @@ exports.handler = async function(event, context) {
   const params = {
     Bucket: process.env.S3_BUCKET_ZIP,
     Key: uuid.v1(),
-    Body: `${file.Body.toString('utf-8')} ${name} ${surname}`
+    Body: `${file.Body.toString('utf-8')} ${name} ${surname}!`
   };
 
   try {
