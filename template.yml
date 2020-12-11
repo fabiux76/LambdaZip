@@ -51,5 +51,5 @@ Resources:
             Period: MONTH
           Throttle:
             BurstLimit: 100
-            RateLimit: 50
+            RateLimit: 60
           UsagePlanName: DefaultUsagePlan
