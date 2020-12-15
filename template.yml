@@ -53,3 +53,9 @@ Resources:
             BurstLimit: 100
             RateLimit: 60
           UsagePlanName: DefaultUsagePlan
+      #tutta questa parte però va parametrizzata
+      Domain:
+        DomainName: localdeploylambdazip2.clumsycloud.com
+        CertificateArn: arn:aws:acm:eu-west-1:955501240318:certificate/5ec66455-9a14-4888-abd9-a3a4ea2d8835
+        Route53:
+          HostedZoneId: Z069410742ABPYMTUIBK
