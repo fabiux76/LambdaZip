@@ -11,6 +11,15 @@ Parameters:
     AllowedValues:
     - 'true'
     - 'false'
+  DomainName:
+    Description: 'Domain name'
+    Type: String
+  CertificateArn:
+    Description: 'Certificate arn'
+    Type: String
+  HostedZoneId:
+    Description: 'Hosted zone ID'
+    Type: String
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
@@ -53,3 +62,9 @@ Resources:
             BurstLimit: 100
             RateLimit: 60
           UsagePlanName: DefaultUsagePlan
+      #tutta questa parte però va parametrizzata
+      Domain:
+        DomainName: !Ref DomainName
+        CertificateArn: !Ref CertificateArn
+        Route53:
+          HostedZoneId: !Ref HostedZoneId
